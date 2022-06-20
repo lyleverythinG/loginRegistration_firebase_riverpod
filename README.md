@@ -1,1 +1,1 @@
-# loginRegistration_firebase_riverpod
+# Firebase Authentication With the Use Of Riverpod State Management
