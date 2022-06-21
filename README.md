@@ -1,16 +1,6 @@
-# riverpod_firebase
+# Riverpod Firebase
+_This project shows a simple login/registration example using Riverpod_.
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- refresh() is used to reset the value of counter to default. (0).
+- ref.watch() is used to rebuild the widget when the value of counter changes.
+- ConsumerWidget is used to expose the WidgetRef to access/listen to our providers.
