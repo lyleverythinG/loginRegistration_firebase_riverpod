@@ -1,5 +1,5 @@
 # Riverpod Firebase
-_This project shows a simple login/registration example using Riverpod_.
+_This project shows a simple login/registration example using Riverpod and Firebase_.
 
 - refresh() is used to reset the value of counter to default. (0).
 - ref.watch() is used to rebuild the widget when the value of counter changes.
