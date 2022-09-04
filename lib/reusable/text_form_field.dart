@@ -5,23 +5,25 @@ class CustomTextFormField extends StatelessWidget {
   final String? Function(String?)? validator;
   final String initialValue;
   final String labelText;
+  final IconData icon;
   const CustomTextFormField(
       {Key? key,
       required this.onChanged,
       required this.validator,
       required this.initialValue,
-      required this.labelText})
+      required this.labelText,
+      required this.icon})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      onChanged: (value) => onChanged,
+      onChanged: onChanged,
       validator: validator,
       initialValue: initialValue,
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
-        prefixIcon: const Icon(Icons.email_outlined),
+        prefixIcon: Icon(icon),
         labelText: labelText,
       ),
     );

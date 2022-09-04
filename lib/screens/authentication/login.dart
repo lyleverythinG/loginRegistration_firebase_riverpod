@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:riverpod_firebase/provider/auth_provider.dart';
+import 'package:riverpod_firebase/reusable/password_field.dart';
 import 'package:riverpod_firebase/reusable/text_form_field.dart';
 import 'package:riverpod_firebase/screens/authentication/register.dart';
 import 'package:riverpod_firebase/screens/loading.dart';
@@ -26,6 +27,7 @@ class LoginScreen extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CustomTextFormField(
+                icon: Icons.email_outlined,
                 onChanged: (value) => authModel.email = value!,
                 validator:
                     EmailValidator(errorText: Constants.kEnterValidEmail),
@@ -39,10 +41,14 @@ class LoginScreen extends ConsumerWidget {
                 builder: ((context, ref, child) {
                   ref.watch(provider.select((value) => value.password));
 
-                  return CustomTextFormField(
+                  return PasswordField(
+                      isObscure: authModel.obscure,
                       onChanged: (value) => authModel.password = value!,
                       validator: MinLengthValidator(8,
                           errorText: Constants.kPasswordRule),
+                      onPressed: () {
+                        authModel.obscure = !authModel.obscure;
+                      },
                       initialValue: authModel.password,
                       labelText: Constants.kPassword);
                 }),

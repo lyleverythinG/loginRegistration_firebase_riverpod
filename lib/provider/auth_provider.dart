@@ -11,9 +11,9 @@ class AuthProvider extends ChangeNotifier {
   User? get user => _firebaseAuth.currentUser;
   bool _isLoading = false;
   bool get isLoading => _isLoading;
-  bool _obscure = false;
+  bool _obscure = true;
   bool get obscure => _obscure;
-  bool _obscureConfirm = false;
+  bool _obscureConfirm = true;
   bool get obscureConfirm => _obscureConfirm;
   set obscure(bool obscure) {
     _obscure = obscure;

@@ -41,6 +41,7 @@ class RegisterScreen extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               CustomTextFormField(
+                icon: Icons.email_outlined,
                 onChanged: (v) => authModel.email = v!,
                 validator:
                     EmailValidator(errorText: Constants.kEnterValidEmail),

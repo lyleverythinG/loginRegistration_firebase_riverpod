@@ -6,16 +6,17 @@ class PasswordField extends StatelessWidget {
   final String initialValue;
   final bool isObscure;
   final String labelText;
+
   final void Function() onPressed;
-  const PasswordField(
-      {Key? key,
-      required this.onChanged,
-      this.validator,
-      required this.initialValue,
-      required this.labelText,
-      required this.isObscure,
-      required this.onPressed})
-      : super(key: key);
+  const PasswordField({
+    Key? key,
+    required this.onChanged,
+    this.validator,
+    required this.initialValue,
+    required this.labelText,
+    required this.isObscure,
+    required this.onPressed,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +27,10 @@ class PasswordField extends StatelessWidget {
       keyboardType: TextInputType.visiblePassword,
       obscureText: isObscure,
       decoration: InputDecoration(
-        suffixIcon: IconButton(
+        prefixIcon: IconButton(
           icon: Icon(isObscure ? Icons.lock_clock_outlined : Icons.lock_open),
           onPressed: onPressed,
         ),
-        prefixIcon: const Icon(Icons.email_outlined),
         labelText: labelText,
       ),
     );
