@@ -46,8 +46,8 @@ class AuthProvider extends ChangeNotifier {
   }
 
   String _confirmPassord = '';
-  String get confirmPassord => _confirmPassord;
-  set confirmPassord(String confirmPassord) {
+  String get confirmPassword => _confirmPassord;
+  set confirmPassword(String confirmPassord) {
     _confirmPassord = confirmPassord;
     notifyListeners();
   }

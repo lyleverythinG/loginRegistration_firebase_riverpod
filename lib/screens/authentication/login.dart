@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:riverpod_firebase/provider/auth_provider.dart';
+import 'package:riverpod_firebase/reusable/text_form_field.dart';
 import 'package:riverpod_firebase/screens/authentication/register.dart';
 import 'package:riverpod_firebase/screens/loading.dart';
 
@@ -24,16 +25,12 @@ class LoginScreen extends ConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextFormField(
-                onChanged: (value) => authModel.email = value,
+              CustomTextFormField(
+                onChanged: (value) => authModel.email = value!,
                 validator:
                     EmailValidator(errorText: Constants.kEnterValidEmail),
                 initialValue: authModel.email,
-                keyboardType: TextInputType.emailAddress,
-                decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.email_outlined),
-                  labelText: Constants.kEmail,
-                ),
+                labelText: Constants.kEmail,
               ),
               const SizedBox(
                 height: 24,
@@ -41,17 +38,13 @@ class LoginScreen extends ConsumerWidget {
               Consumer(
                 builder: ((context, ref, child) {
                   ref.watch(provider.select((value) => value.password));
-                  return TextFormField(
-                    onChanged: (value) => authModel.password = value,
-                    validator: MinLengthValidator(8,
-                        errorText: Constants.kPasswordRule),
-                    initialValue: authModel.password,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.email_outlined),
-                      labelText: Constants.kPassword,
-                    ),
-                  );
+
+                  return CustomTextFormField(
+                      onChanged: (value) => authModel.password = value!,
+                      validator: MinLengthValidator(8,
+                          errorText: Constants.kPasswordRule),
+                      initialValue: authModel.password,
+                      labelText: Constants.kPassword);
                 }),
               ),
               const SizedBox(

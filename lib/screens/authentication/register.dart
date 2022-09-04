@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:riverpod_firebase/provider/auth_provider.dart';
 import 'package:riverpod_firebase/reusable/custom_appbar.dart';
+import 'package:riverpod_firebase/reusable/password_field.dart';
+import 'package:riverpod_firebase/reusable/text_form_field.dart';
 import 'package:riverpod_firebase/screens/authentication/login.dart';
 import 'package:riverpod_firebase/screens/loading.dart';
 import '../../constants/constants.dart';
@@ -38,56 +40,34 @@ class RegisterScreen extends ConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              TextFormField(
-                onChanged: (v) => authModel.email = v,
+              CustomTextFormField(
+                onChanged: (v) => authModel.email = v!,
                 validator:
                     EmailValidator(errorText: Constants.kEnterValidEmail),
                 initialValue: authModel.email,
-                keyboardType: TextInputType.emailAddress,
-                decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.email_outlined),
-                  labelText: Constants.kEmail,
-                ),
+                labelText: Constants.kEmail,
               ),
-              TextFormField(
-                onChanged: (v) => authModel.password = v,
+              PasswordField(
                 validator:
                     MinLengthValidator(8, errorText: Constants.kPasswordRule),
+                onChanged: (v) => authModel.password = v!,
                 initialValue: authModel.password,
-                keyboardType: TextInputType.visiblePassword,
-                obscureText: authModel.obscure,
-                decoration: InputDecoration(
-                  suffixIcon: IconButton(
-                    icon: Icon(authModel.obscure
-                        ? Icons.lock_clock_outlined
-                        : Icons.lock_open),
-                    onPressed: () {
-                      authModel.obscure = !authModel.obscure;
-                    },
-                  ),
-                  prefixIcon: const Icon(Icons.email_outlined),
-                  labelText: Constants.kPassword,
-                ),
+                labelText: Constants.kPassword,
+                isObscure: authModel.obscure,
+                onPressed: () {
+                  authModel.obscure = !authModel.obscure;
+                },
               ),
-              TextFormField(
-                onChanged: (v) => authModel.confirmPassord = v,
+              PasswordField(
                 validator: (v) =>
                     v != authModel.password ? "password don't match" : null,
-                initialValue: authModel.confirmPassord,
-                keyboardType: TextInputType.visiblePassword,
-                obscureText: authModel.obscureConfirm,
-                decoration: InputDecoration(
-                  suffixIcon: IconButton(
-                    icon: Icon(authModel.obscureConfirm
-                        ? Icons.lock_clock_outlined
-                        : Icons.lock_open),
-                    onPressed: () {
-                      authModel.obscureConfirm = !authModel.obscureConfirm;
-                    },
-                  ),
-                  prefixIcon: const Icon(Icons.email_outlined),
-                  labelText: Constants.kConfirmPassword,
-                ),
+                onChanged: (v) => authModel.confirmPassword,
+                initialValue: authModel.confirmPassword,
+                labelText: Constants.kConfirmPassword,
+                isObscure: authModel.obscureConfirm,
+                onPressed: () {
+                  authModel.obscureConfirm = !authModel.obscureConfirm;
+                },
               ),
               ElevatedButton(
                 onPressed: () async {
